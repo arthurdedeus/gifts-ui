@@ -26,7 +26,7 @@ const initialProducts = [
     id: 2,
     name: 'Custom Wedding Mug',
     description: 'A beautiful mug customized for your special day.',
-    price: 15.99,
+    price: 0.01,
     imageUrl: '/images/capy.jpeg',
   },
   {
@@ -110,16 +110,14 @@ const initialProducts = [
 ];
 
 
-const GridContainer: React.FC<GridContainerProps> = () => {
+export const GridContainer: React.FC<GridContainerProps> = () => {
   const [products, setProducts] = React.useState<Product[]>(initialProducts);
 
   return (
     <StyledGridContainer>
       {products.map(product => (
-        <ProductItem key={product.id} {...product} />
+        <ProductItem key={product.id} product={product} />
       ))}
     </StyledGridContainer>
   );
 };
-
-export default GridContainer;

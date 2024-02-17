@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useCart } from '../contexts/CartContext';
+import { Product } from '../types';
+import { ActionType } from '../enums';
 
 // Define props types
 interface ProductItemProps {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  imageUrl: string;
+  product: Product;
 }
 
 // Styled component
@@ -18,14 +17,21 @@ const Item = styled.div`
   text-align: center;
 `;
 
-export const ProductItem: React.FC<ProductItemProps> = ({ name, description, price, imageUrl }) => {
+export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
+  const {dispatch} = useCart();
+
+  const handleAddToCart = () => {
+    console.log(product.id)
+    dispatch({ type: ActionType.ADD_ITEM, payload: { ...product, quantity: 1 } });
+  }
+
   return (
     <Item>
-      <img src={imageUrl} alt={name} style={{ maxWidth: '100%' }} />
-      <h2>{name}</h2>
-      <p>{description}</p>
-      <p>${price}</p>
-      {/* Add to Cart Button */}
+      <img src={product.imageUrl} alt={product.name} style={{ maxWidth: '100%' }} />
+      <h2>{product.name}</h2>
+      <p>{product.description}</p>
+      <p>${product.price}</p>
+      <button onClick={handleAddToCart}>Add to Cart</button>
       {/* This can be implemented based on how you manage cart state */}
     </Item>
   );
