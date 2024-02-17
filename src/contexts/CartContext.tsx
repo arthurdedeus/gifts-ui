@@ -1,11 +1,6 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
-import { Product } from '../types'; // Assuming you have this from earlier
+import { CartItem } from '../types'; // Assuming you have this from earlier
 import { ActionType } from '../enums';
-
-// Define cart item type
-interface CartItem extends Product {
-  quantity: number;
-}
 
 // Cart context state type
 interface CartState {

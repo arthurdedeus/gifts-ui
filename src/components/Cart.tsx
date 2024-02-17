@@ -32,8 +32,9 @@ export const Cart = () => {
       <ul>
         {state.items.map(item => (
           <li key={item.id}>
-            {item.name} - ${item.price} x {item.quantity}
-            <button onClick={() => handleRemoveItem(item.id, item.name)}>Remove</button>
+            <div>{item.name} - ${item.price}</div>
+            <div>Quantity: {item.quantity}</div>
+            <button onClick={() => handleRemoveItem(item.id, item.name)}>Remover</button>
             <button onClick={() => handleUpdateQuantity(item.id, item.quantity + 1, item.name)}>+</button>
             <button onClick={() => handleUpdateQuantity(item.id, item.quantity - 1, item.name)}>-</button>
           </li>

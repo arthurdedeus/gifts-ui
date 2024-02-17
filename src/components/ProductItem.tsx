@@ -1,5 +1,5 @@
 import React from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styled from 'styled-components';
 import { useCart } from '../contexts/CartContext';
@@ -34,7 +34,6 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
       <p>{product.description}</p>
       <p>${product.price}</p>
       <button onClick={handleAddToCart}>Add to Cart</button>
-      {/* This can be implemented based on how you manage cart state */}
     </Item>
   );
 };
