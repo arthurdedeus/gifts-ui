@@ -1,4 +1,6 @@
 import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import styled from 'styled-components';
 import { useCart } from '../contexts/CartContext';
 import { Product } from '../types';
@@ -21,7 +23,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
   const {dispatch} = useCart();
 
   const handleAddToCart = () => {
-    console.log(product.id)
+    toast.success(`${product.name} added to cart!`);
     dispatch({ type: ActionType.ADD_ITEM, payload: { ...product, quantity: 1 } });
   }
 

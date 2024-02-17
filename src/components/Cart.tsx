@@ -1,19 +1,24 @@
 import React from 'react';
 import { useCart } from '../contexts/CartContext';
 import { ActionType } from '../enums';
+import { toast } from 'react-toastify';
 
 export const Cart = () => {
   const { state, dispatch } = useCart();
 
-  const handleRemoveItem = (id: number) => {
+  const handleRemoveItem = (id: number, name: string) => {
     dispatch({ type: ActionType.REMOVE_ITEM, payload: { id } });
+    toast.success(`${name} removed from cart!`);
   };
 
-  const handleUpdateQuantity = (id: number, quantity: number) => {
+  const handleUpdateQuantity = (id: number, quantity: number, name: string) => {
     if (quantity < 1) {
       dispatch({ type: ActionType.REMOVE_ITEM, payload: { id } });
+      toast.success(`${name} removed from cart!`);
+    } else {
+      dispatch({ type: ActionType.UPDATE_QUANTITY, payload: { id, quantity } });
+      toast.success(`${name} updated!`);
     }
-    dispatch({ type: ActionType.UPDATE_QUANTITY, payload: { id, quantity } });
   };
 
   const totalPrice = state.items.reduce((total, item) => {
@@ -28,9 +33,9 @@ export const Cart = () => {
         {state.items.map(item => (
           <li key={item.id}>
             {item.name} - ${item.price} x {item.quantity}
-            <button onClick={() => handleRemoveItem(item.id)}>Remove</button>
-            <button onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}>+</button>
-            <button onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}>-</button>
+            <button onClick={() => handleRemoveItem(item.id, item.name)}>Remove</button>
+            <button onClick={() => handleUpdateQuantity(item.id, item.quantity + 1, item.name)}>+</button>
+            <button onClick={() => handleUpdateQuantity(item.id, item.quantity - 1, item.name)}>-</button>
           </li>
         ))}
       </ul>

@@ -35,7 +35,7 @@ const CartContext = createContext<{
 // Cart reducer to handle actions
 const cartReducer = (state: CartState, action: CartAction): CartState => {
   switch (action.type) {
-    case 'ADD_ITEM':
+    case ActionType.ADD_ITEM:
       // Check if item is already in the cart
       const existingItemIndex = state.items.findIndex(item => item.id === action.payload.id);
       if (existingItemIndex > -1) {
@@ -48,9 +48,9 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
         // Add new item
         return { ...state, items: [...state.items, action.payload] };
       }
-    case 'REMOVE_ITEM':
+    case ActionType.REMOVE_ITEM:
       return { ...state, items: state.items.filter(item => item.id !== action.payload.id) };
-    case 'UPDATE_QUANTITY':
+    case ActionType.UPDATE_QUANTITY:
       return {
         ...state,
         items: state.items.map(item =>
