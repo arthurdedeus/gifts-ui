@@ -17,7 +17,6 @@ export const CartIcon = ({onClick, isDrawerOpen}: CartIconProps) => {
     onClick();
   }
 
-
   return (
     <span className="cart-icon" style={{ cursor: 'pointer', position: 'relative' }} onClick={handleClick}>
       <span className="material-icons" style={{ fontSize: '24px' }}>shopping_cart</span>
