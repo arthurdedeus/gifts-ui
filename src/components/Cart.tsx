@@ -1,4 +1,3 @@
-import React from 'react';
 import { toast } from 'react-toastify';
 
 import { useCart } from '../contexts/CartContext';
@@ -22,17 +21,17 @@ export const Cart = () => {
     }
   };
 
-  const totalPrice = state.items.reduce((total, item) => {
-    return total + item.price * item.quantity;
-  }, 0);
-
   return (
     <div>
-      <h2>Your Cart</h2>
       {state.items.length === 0 && <p>Your cart is empty</p>}
       <ul>
         {state.items.map(item => (
-          <li key={item.id}>
+          <li
+            key={item.id}
+            style={{
+              marginBottom: '15px',
+            }}
+          >
             <div>
               {item.name} - ${item.price}
             </div>
@@ -47,7 +46,6 @@ export const Cart = () => {
           </li>
         ))}
       </ul>
-      <div>Total Price: ${totalPrice.toFixed(2)}</div>
     </div>
   );
 };

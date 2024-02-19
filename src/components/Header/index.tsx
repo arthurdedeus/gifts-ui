@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { CartIcon } from '../CartIcon';
 import './Header.css';
 
@@ -21,6 +19,7 @@ export const Header = ({ handleCartIconClick, isDrawerOpen }: HeaderProps) => {
         justifyContent: 'space-between',
         alignItems: 'center',
         boxSizing: 'border-box',
+        height: '60px',
       }}
     >
       <h1 style={{ margin: 0 }}>My Shop</h1>

@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
+import { useCart } from '../contexts/CartContext';
 import { Cart } from './Cart';
 
 interface CartDrawerProps {
@@ -7,6 +8,12 @@ interface CartDrawerProps {
 }
 
 export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen }) => {
+  const { state } = useCart();
+
+  const totalPrice = state.items.reduce((total, item) => {
+    return total + item.price * item.quantity;
+  }, 0);
+
   useEffect(() => {
     const body = document.body;
     const originalStyle = window.getComputedStyle(body).overflow;
@@ -34,13 +41,39 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen }) => {
         backgroundColor: '#fff',
         boxShadow: '-2px 0 5px rgba(0,0,0,0.5)',
         transition: 'right 0.3s ease-in-out',
-        padding: '20px',
+        display: 'flex',
+        flexDirection: 'column', // Organize content vertically
         boxSizing: 'border-box',
-        paddingTop: '60px',
-        overflowY: 'auto',
       }}
     >
-      <Cart />
+      <div
+        style={{
+          padding: '10px',
+          paddingTop: '60px',
+          borderBottom: '1px solid #ccc',
+        }}
+      >
+        <h2>Your Cart</h2>
+      </div>
+      <div
+        style={{
+          overflowY: 'auto',
+          flex: 1,
+        }}
+      >
+        <Cart />
+      </div>
+      <div
+        style={{
+          padding: '20px',
+          paddingTop: 0,
+          borderTop: '1px solid #ccc',
+          backgroundColor: '#fff',
+        }}
+      >
+        <p>Total: ${totalPrice.toFixed(2)}</p>
+        <button onClick={() => console.log('Proceed to checkout')}>Proceed to Checkout</button>
+      </div>
     </div>
   );
 };
