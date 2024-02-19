@@ -1,7 +1,9 @@
 import React from 'react';
+
 import styled from 'styled-components';
-import {ProductItem} from './ProductItem';
-import { Product } from '../types'; // Import the Product interface
+
+import { Product } from '../types';
+import { ProductItem } from './ProductItem';
 
 const StyledGridContainer = styled.div`
   display: grid;
@@ -10,8 +12,7 @@ const StyledGridContainer = styled.div`
   padding: 20px;
 `;
 
-interface GridContainerProps {
-}
+interface GridContainerProps {}
 
 // Example product data
 const initialProducts = [
@@ -106,9 +107,7 @@ const initialProducts = [
     price: 15.99,
     imageUrl: '/images/capy.jpeg',
   },
-
 ];
-
 
 export const GridContainer: React.FC<GridContainerProps> = () => {
   const [products, setProducts] = React.useState<Product[]>(initialProducts);

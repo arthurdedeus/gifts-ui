@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+
 import { Cart } from './Cart';
 
 interface CartDrawerProps {
@@ -20,7 +21,6 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen }) => {
       body.style.overflow = originalStyle;
     };
   }, [isOpen]);
-
 
   return (
     <div

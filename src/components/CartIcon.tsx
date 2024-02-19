@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { useCart } from '../contexts/CartContext';
 
 type CartIconProps = {
@@ -6,35 +7,43 @@ type CartIconProps = {
   isDrawerOpen: boolean;
 };
 
-export const CartIcon = ({onClick, isDrawerOpen}: CartIconProps) => {
+export const CartIcon = ({ onClick, isDrawerOpen }: CartIconProps) => {
   const { state } = useCart();
   const itemCount = state.items.reduce((total, item) => total + item.quantity, 0);
 
   const handleClick = (event: React.MouseEvent) => {
-    console.log({isDrawerOpen})
+    console.log({ isDrawerOpen });
     event.stopPropagation();
     if (isDrawerOpen) return;
     onClick();
-  }
+  };
 
   return (
-    <span className="cart-icon" style={{ cursor: 'pointer', position: 'relative' }} onClick={handleClick}>
-      <span className="material-icons" style={{ fontSize: '24px' }}>shopping_cart</span>
+    <span
+      className="cart-icon"
+      style={{ cursor: 'pointer', position: 'relative' }}
+      onClick={handleClick}
+    >
+      <span className="material-icons" style={{ fontSize: '24px' }}>
+        shopping_cart
+      </span>
       {itemCount > 0 && (
-        <span style={{
-          position: 'absolute',
-          top: '-10px',
-          right: '-10px',
-          backgroundColor: 'red',
-          color: 'white',
-          borderRadius: '50%',
-          width: '20px',
-          height: '20px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: '12px',
-        }}>
+        <span
+          style={{
+            position: 'absolute',
+            top: '-10px',
+            right: '-10px',
+            backgroundColor: 'red',
+            color: 'white',
+            borderRadius: '50%',
+            width: '20px',
+            height: '20px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '12px',
+          }}
+        >
           {itemCount}
         </span>
       )}

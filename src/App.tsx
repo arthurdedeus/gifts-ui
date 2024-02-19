@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
-import {GridContainer} from './components/GridContainer';
-import { CartProvider } from './contexts/CartContext';
 import { ToastContainer } from 'react-toastify';
-import { Header } from './components/Header';
-import { CartDrawer } from './components/CartDrawer';
 
+import './App.css';
+import { CartDrawer } from './components/CartDrawer';
+import { GridContainer } from './components/GridContainer';
+import { Header } from './components/Header';
+import { CartProvider } from './contexts/CartContext';
 
 function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
@@ -27,18 +27,21 @@ function App() {
     return () => document.removeEventListener('mousedown', handleOutsideClick);
   }, [isDrawerOpen]);
 
-
   return (
     <CartProvider>
-    <ToastContainer position="bottom-left" autoClose={2000} hideProgressBar closeButton={false} closeOnClick/>
-    <div className="App">
-      <Header handleCartIconClick={toggleDrawer} isDrawerOpen={isDrawerOpen}/>
-      <CartDrawer
-        isOpen={isDrawerOpen}
+      <ToastContainer
+        position="bottom-left"
+        autoClose={2000}
+        hideProgressBar
+        closeButton={false}
+        closeOnClick
       />
-      <GridContainer />
-    </div>
-  </CartProvider>
+      <div className="App">
+        <Header handleCartIconClick={toggleDrawer} isDrawerOpen={isDrawerOpen} />
+        <CartDrawer isOpen={isDrawerOpen} />
+        <GridContainer />
+      </div>
+    </CartProvider>
   );
 }
 

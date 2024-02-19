@@ -1,17 +1,17 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import styled from 'styled-components';
-import { useCart } from '../contexts/CartContext';
-import { Product } from '../types';
-import { ActionType } from '../enums';
 
-// Define props types
+import styled from 'styled-components';
+
+import { useCart } from '../contexts/CartContext';
+import { ActionType } from '../enums';
+import { Product } from '../types';
+
 interface ProductItemProps {
   product: Product;
 }
 
-// Styled component
 const Item = styled.div`
   border: 1px solid #eee;
   padding: 10px;
@@ -20,12 +20,12 @@ const Item = styled.div`
 `;
 
 export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
-  const {dispatch} = useCart();
+  const { dispatch } = useCart();
 
   const handleAddToCart = () => {
     toast.success(`${product.name} added to cart!`);
     dispatch({ type: ActionType.ADD_ITEM, payload: { ...product, quantity: 1 } });
-  }
+  };
 
   return (
     <Item>
@@ -37,4 +37,3 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
     </Item>
   );
 };
-

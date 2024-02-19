@@ -1,7 +1,8 @@
 import React from 'react';
+import { toast } from 'react-toastify';
+
 import { useCart } from '../contexts/CartContext';
 import { ActionType } from '../enums';
-import { toast } from 'react-toastify';
 
 export const Cart = () => {
   const { state, dispatch } = useCart();
@@ -32,11 +33,17 @@ export const Cart = () => {
       <ul>
         {state.items.map(item => (
           <li key={item.id}>
-            <div>{item.name} - ${item.price}</div>
+            <div>
+              {item.name} - ${item.price}
+            </div>
             <div>Quantity: {item.quantity}</div>
             <button onClick={() => handleRemoveItem(item.id, item.name)}>Remover</button>
-            <button onClick={() => handleUpdateQuantity(item.id, item.quantity + 1, item.name)}>+</button>
-            <button onClick={() => handleUpdateQuantity(item.id, item.quantity - 1, item.name)}>-</button>
+            <button onClick={() => handleUpdateQuantity(item.id, item.quantity + 1, item.name)}>
+              +
+            </button>
+            <button onClick={() => handleUpdateQuantity(item.id, item.quantity - 1, item.name)}>
+              -
+            </button>
           </li>
         ))}
       </ul>
