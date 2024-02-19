@@ -14,7 +14,6 @@ const StyledGridContainer = styled.div`
 
 interface GridContainerProps {}
 
-// Example product data
 const initialProducts = [
   {
     id: 1,

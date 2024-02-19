@@ -3,3 +3,8 @@ export enum ActionType {
   REMOVE_ITEM = 'REMOVE_ITEM',
   UPDATE_QUANTITY = 'UPDATE_QUANTITY',
 }
+
+export enum AppRoutes {
+  HOME = '/home',
+  CHECKOUT = '/checkout',
+}

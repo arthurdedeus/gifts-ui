@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { useCart } from '../contexts/CartContext';
+import { AppRoutes } from '../enums';
 import { Cart } from './Cart';
 
 interface CartDrawerProps {
@@ -9,6 +11,7 @@ interface CartDrawerProps {
 
 export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen }) => {
   const { state } = useCart();
+  const navigate = useNavigate();
 
   const totalPrice = state.items.reduce((total, item) => {
     return total + item.price * item.quantity;
@@ -28,6 +31,10 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen }) => {
       body.style.overflow = originalStyle;
     };
   }, [isOpen]);
+
+  const handleProceedToCheckout = () => {
+    navigate(AppRoutes.CHECKOUT);
+  };
 
   return (
     <div
@@ -72,7 +79,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen }) => {
         }}
       >
         <p>Total: ${totalPrice.toFixed(2)}</p>
-        <button onClick={() => console.log('Proceed to checkout')}>Proceed to Checkout</button>
+        <button onClick={handleProceedToCheckout}>Proceed to Checkout</button>
       </div>
     </div>
   );

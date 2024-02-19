@@ -1,47 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 import './App.css';
-import { CartDrawer } from './components/CartDrawer';
-import { GridContainer } from './components/GridContainer';
-import { Header } from './components/Header';
 import { CartProvider } from './contexts/CartContext';
+import { Router } from './pages/Router';
 
 function App() {
-  const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
-
-  const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
-
-  useEffect(() => {
-    const handleOutsideClick = (event: MouseEvent) => {
-      const target = event.target as Element;
-      const isClickOnDrawer = target.closest('.cart-drawer');
-      const isClickOnCartIcon = target.closest('.cart-icon');
-
-      if (!isClickOnDrawer && !isClickOnCartIcon && isDrawerOpen) {
-        setIsDrawerOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleOutsideClick);
-    return () => document.removeEventListener('mousedown', handleOutsideClick);
-  }, [isDrawerOpen]);
-
   return (
-    <CartProvider>
-      <ToastContainer
-        position="bottom-left"
-        autoClose={2000}
-        hideProgressBar
-        closeButton={false}
-        closeOnClick
-      />
-      <div className="App">
-        <Header handleCartIconClick={toggleDrawer} isDrawerOpen={isDrawerOpen} />
-        <CartDrawer isOpen={isDrawerOpen} />
-        <GridContainer />
-      </div>
-    </CartProvider>
+    <BrowserRouter>
+      <CartProvider>
+        <ToastContainer
+          position="bottom-left"
+          autoClose={2000}
+          hideProgressBar
+          closeButton={false}
+          closeOnClick
+        />
+        <div className="App">
+          <Router />
+        </div>
+      </CartProvider>
+    </BrowserRouter>
   );
 }
 
