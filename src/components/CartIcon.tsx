@@ -3,8 +3,8 @@ import React from 'react';
 import { useCart } from '../contexts/CartContext';
 
 type CartIconProps = {
-  onClick: () => void;
-  isDrawerOpen: boolean;
+  onClick?: () => void;
+  isDrawerOpen?: boolean;
 };
 
 export const CartIcon = ({ onClick, isDrawerOpen }: CartIconProps) => {
@@ -15,7 +15,9 @@ export const CartIcon = ({ onClick, isDrawerOpen }: CartIconProps) => {
     console.log({ isDrawerOpen });
     event.stopPropagation();
     if (isDrawerOpen) return;
-    onClick();
+    if (onClick) {
+      onClick();
+    }
   };
 
   return (
