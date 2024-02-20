@@ -22,7 +22,8 @@ const initialState: CartState = loadInitialState();
 const CartContext = createContext<{
   state: CartState;
   dispatch: React.Dispatch<CartAction>;
-}>({ state: initialState, dispatch: () => null });
+  totalPrice: number;
+}>({ state: initialState, dispatch: () => null, totalPrice: 0 });
 
 const cartReducer = (state: CartState, action: CartAction): CartState => {
   switch (action.type) {
@@ -55,11 +56,17 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
 export const CartProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
+  const totalPrice = state.items.reduce((total, item) => {
+    return total + item.price * item.quantity;
+  }, 0);
+
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(state));
   }, [state]);
 
-  return <CartContext.Provider value={{ state, dispatch }}>{children}</CartContext.Provider>;
+  return (
+    <CartContext.Provider value={{ state, dispatch, totalPrice }}>{children}</CartContext.Provider>
+  );
 };
 
 export const useCart = () => useContext(CartContext);

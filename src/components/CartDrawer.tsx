@@ -10,12 +10,8 @@ interface CartDrawerProps {
 }
 
 export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen }) => {
-  const { state } = useCart();
+  const { totalPrice } = useCart();
   const navigate = useNavigate();
-
-  const totalPrice = state.items.reduce((total, item) => {
-    return total + item.price * item.quantity;
-  }, 0);
 
   useEffect(() => {
     const body = document.body;
@@ -49,7 +45,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen }) => {
         boxShadow: '-2px 0 5px rgba(0,0,0,0.5)',
         transition: 'right 0.3s ease-in-out',
         display: 'flex',
-        flexDirection: 'column', // Organize content vertically
+        flexDirection: 'column',
         boxSizing: 'border-box',
       }}
     >
