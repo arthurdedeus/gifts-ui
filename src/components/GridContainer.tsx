@@ -7,9 +7,14 @@ import { ProductItem } from './ProductItem';
 
 const StyledGridContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
   padding: 20px;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 interface GridContainerProps {}

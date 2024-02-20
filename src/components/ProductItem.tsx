@@ -17,6 +17,13 @@ const Item = styled.div`
   padding: 10px;
   margin: 10px;
   text-align: center;
+
+  @media (max-width: 768px) {
+    margin: 2px;
+    & h2 {
+      font-size: 1.2rem;
+    }
+  }
 `;
 
 export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
