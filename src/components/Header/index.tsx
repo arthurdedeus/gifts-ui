@@ -5,12 +5,12 @@ import { CartIcon } from '../CartIcon';
 import './Header.css';
 
 type HeaderProps = {
-  showCartIcon?: boolean;
+  isCheckout?: boolean;
   handleCartIconClick?: () => void;
   isDrawerOpen?: boolean;
 };
 
-export const Header = ({ showCartIcon = true, handleCartIconClick, isDrawerOpen }: HeaderProps) => {
+export const Header = ({ isCheckout = true, handleCartIconClick, isDrawerOpen }: HeaderProps) => {
   const navigate = useNavigate();
 
   const handletTitleClick = () => {
@@ -35,7 +35,7 @@ export const Header = ({ showCartIcon = true, handleCartIconClick, isDrawerOpen 
       <h1 style={{ margin: 0 }} onClick={handletTitleClick}>
         My Shop
       </h1>
-      {showCartIcon && <CartIcon onClick={handleCartIconClick} isDrawerOpen={isDrawerOpen} />}
+      {isCheckout && <CartIcon onClick={handleCartIconClick} isDrawerOpen={isDrawerOpen} />}
     </header>
   );
 };
