@@ -1,5 +1,7 @@
 import { toast } from 'react-toastify';
 
+import styled from 'styled-components';
+
 import { useCart } from '../../contexts/CartContext';
 import { ActionType } from '../../enums';
 import { CheckoutCartItem } from './CheckoutCartItem';
@@ -8,6 +10,17 @@ import { DrawerCartItem } from './DrawerCartItem';
 type CartProps = {
   isCheckout?: boolean;
 };
+
+type CartItemListProps = CartProps;
+
+const CartItemsList = styled.ul<CartItemListProps>`
+  list-style-type: none;
+  padding: 0 15px;
+
+  @media (min-width: 768px) {
+    padding: ${props => (props.isCheckout ? '0 150px' : '0 15px')};
+  }
+`;
 
 export const Cart = ({ isCheckout = false }: CartProps) => {
   const { state, dispatch } = useCart();
@@ -32,13 +45,7 @@ export const Cart = ({ isCheckout = false }: CartProps) => {
   return (
     <div>
       {state.items.length === 0 && <p>Your cart is empty</p>}
-      <ul
-        style={{
-          // TODO: Make this responsive
-          padding: '0 15px',
-          listStyleType: 'none',
-        }}
-      >
+      <CartItemsList isCheckout={isCheckout}>
         {state.items.map(item => (
           <ItemComponent
             key={item.id}
@@ -47,7 +54,7 @@ export const Cart = ({ isCheckout = false }: CartProps) => {
             handleUpdateQuantity={handleUpdateQuantity}
           />
         ))}
-      </ul>
+      </CartItemsList>
     </div>
   );
 };
