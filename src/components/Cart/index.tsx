@@ -16,10 +16,6 @@ type CartItemListProps = CartProps;
 const CartItemsList = styled.ul<CartItemListProps>`
   list-style-type: none;
   padding: 0 15px;
-
-  @media (min-width: 768px) {
-    padding: ${props => (props.isCheckout ? '0 150px' : '0 15px')};
-  }
 `;
 
 export const Cart = ({ isCheckout = false }: CartProps) => {
@@ -43,7 +39,7 @@ export const Cart = ({ isCheckout = false }: CartProps) => {
   const ItemComponent = isCheckout ? CheckoutCartItem : DrawerCartItem;
 
   return (
-    <div>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
       {state.items.length === 0 && <p>Your cart is empty</p>}
       <CartItemsList isCheckout={isCheckout}>
         {state.items.map(item => (
