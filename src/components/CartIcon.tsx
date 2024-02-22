@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useCart } from '../contexts/CartContext';
+import { Icon } from './Icon';
 
 type CartIconProps = {
   onClick?: () => void;
@@ -26,9 +27,7 @@ export const CartIcon = ({ onClick, isDrawerOpen }: CartIconProps) => {
       style={{ cursor: 'pointer', position: 'relative' }}
       onClick={handleClick}
     >
-      <span className="material-icons" style={{ fontSize: '24px' }}>
-        shopping_cart
-      </span>
+      <Icon name="shopping_cart" style={{ fontSize: '24px' }} />
       {itemCount > 0 && (
         <span
           style={{

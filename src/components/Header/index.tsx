@@ -32,7 +32,7 @@ export const Header = ({ isCheckout = true, handleCartIconClick, isDrawerOpen }:
         height: '60px',
       }}
     >
-      <h1 style={{ margin: 0 }} onClick={handletTitleClick}>
+      <h1 style={{ margin: 0, cursor: 'pointer' }} onClick={handletTitleClick}>
         My Shop
       </h1>
       {isCheckout && <CartIcon onClick={handleCartIconClick} isDrawerOpen={isDrawerOpen} />}
