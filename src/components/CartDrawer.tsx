@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { AppRoutes } from '../enums';
 import { Cart } from './Cart';
+import { Footer } from './Footer';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -66,17 +67,10 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen }) => {
       >
         <Cart />
       </div>
-      <div
-        style={{
-          padding: '20px',
-          paddingTop: 0,
-          borderTop: '1px solid #ccc',
-          backgroundColor: '#fff',
-        }}
-      >
+      <Footer>
         <p>Total: ${totalPrice.toFixed(2)}</p>
         <button onClick={handleProceedToCheckout}>Proceed to Checkout</button>
-      </div>
+      </Footer>
     </div>
   );
 };
