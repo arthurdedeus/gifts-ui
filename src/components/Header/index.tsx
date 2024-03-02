@@ -1,12 +1,22 @@
+import { useNavigate } from 'react-router-dom';
+
+import { AppRoutes } from '../../enums';
 import { CartIcon } from '../CartIcon';
 import './Header.css';
 
 type HeaderProps = {
-  handleCartIconClick: () => void;
-  isDrawerOpen: boolean;
+  isCheckout?: boolean;
+  handleCartIconClick?: () => void;
+  isDrawerOpen?: boolean;
 };
 
-export const Header = ({ handleCartIconClick, isDrawerOpen }: HeaderProps) => {
+export const Header = ({ isCheckout = true, handleCartIconClick, isDrawerOpen }: HeaderProps) => {
+  const navigate = useNavigate();
+
+  const handletTitleClick = () => {
+    navigate(AppRoutes.HOME);
+  };
+
   return (
     <header
       className="header"
@@ -22,8 +32,10 @@ export const Header = ({ handleCartIconClick, isDrawerOpen }: HeaderProps) => {
         height: '60px',
       }}
     >
-      <h1 style={{ margin: 0 }}>My Shop</h1>
-      <CartIcon onClick={handleCartIconClick} isDrawerOpen={isDrawerOpen} />
+      <h1 style={{ margin: 0, cursor: 'pointer' }} onClick={handletTitleClick}>
+        My Shop
+      </h1>
+      {isCheckout && <CartIcon onClick={handleCartIconClick} isDrawerOpen={isDrawerOpen} />}
     </header>
   );
 };

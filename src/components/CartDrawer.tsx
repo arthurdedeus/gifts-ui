@@ -4,18 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { AppRoutes } from '../enums';
 import { Cart } from './Cart';
+import { Footer } from './Footer';
 
 interface CartDrawerProps {
   isOpen: boolean;
 }
 
 export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen }) => {
-  const { state } = useCart();
+  const { totalPrice } = useCart();
   const navigate = useNavigate();
-
-  const totalPrice = state.items.reduce((total, item) => {
-    return total + item.price * item.quantity;
-  }, 0);
 
   useEffect(() => {
     const body = document.body;
@@ -49,7 +46,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen }) => {
         boxShadow: '-2px 0 5px rgba(0,0,0,0.5)',
         transition: 'right 0.3s ease-in-out',
         display: 'flex',
-        flexDirection: 'column', // Organize content vertically
+        flexDirection: 'column',
         boxSizing: 'border-box',
       }}
     >
@@ -70,17 +67,10 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen }) => {
       >
         <Cart />
       </div>
-      <div
-        style={{
-          padding: '20px',
-          paddingTop: 0,
-          borderTop: '1px solid #ccc',
-          backgroundColor: '#fff',
-        }}
-      >
+      <Footer>
         <p>Total: ${totalPrice.toFixed(2)}</p>
         <button onClick={handleProceedToCheckout}>Proceed to Checkout</button>
-      </div>
+      </Footer>
     </div>
   );
 };

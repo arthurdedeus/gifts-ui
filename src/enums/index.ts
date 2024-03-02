@@ -5,6 +5,6 @@ export enum ActionType {
 }
 
 export enum AppRoutes {
-  HOME = '/home',
+  HOME = '/',
   CHECKOUT = '/checkout',
 }

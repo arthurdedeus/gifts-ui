@@ -9,3 +9,9 @@ export interface Product {
 export interface CartItem extends Product {
   quantity: number;
 }
+
+export type CartItemProps = {
+  item: CartItem;
+  handleRemoveItem: (id: number, name: string) => void;
+  handleUpdateQuantity: (id: number, quantity: number, name: string) => void;
+};

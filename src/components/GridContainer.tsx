@@ -22,8 +22,8 @@ interface GridContainerProps {}
 const initialProducts = [
   {
     id: 1,
-    name: 'Custom Wedding Mug',
-    description: 'A beautiful mug customized for your special day.',
+    name: 'Filhote de Capivara para o Noivo',
+    description: 'Uma Capi.',
     price: 15.99,
     imageUrl: '/images/capy.jpeg',
   },
