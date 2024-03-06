@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { CartItemProps } from '../../types';
+import { formatCurrency } from '../../utils';
 import { Icon } from '../Icon';
 
 const ItemContainer = styled.li`
@@ -63,7 +64,7 @@ export const CheckoutCartItem = ({
       <ProductContainer>
         <ProductName>{item.name}</ProductName>
         <ProductDescription>{item.description}</ProductDescription>
-        <Price>${item.price * item.quantity}</Price>
+        <Price>{formatCurrency(item.price * item.quantity)}</Price>
         <QuantityContainer>
           <button
             onClick={() => handleUpdateQuantity(item.id, item.quantity - 1, item.name)}

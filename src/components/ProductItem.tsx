@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { useCart } from '../contexts/CartContext';
 import { ActionType } from '../enums';
 import { Product } from '../types';
+import { formatCurrency } from '../utils';
 
 interface ProductItemProps {
   product: Product;
@@ -39,7 +40,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
       <img src={product.imageUrl} alt={product.name} style={{ maxWidth: '100%' }} />
       <h2>{product.name}</h2>
       <p>{product.description}</p>
-      <p>${product.price}</p>
+      <p>{formatCurrency(product.price)}</p>
       <button onClick={handleAddToCart}>Add to Cart</button>
     </Item>
   );
