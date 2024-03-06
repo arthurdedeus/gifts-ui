@@ -1,4 +1,5 @@
 import { CartItemProps } from '../../types';
+import { formatCurrency } from '../../utils';
 
 export const DrawerCartItem = ({ item, handleRemoveItem, handleUpdateQuantity }: CartItemProps) => {
   return (
@@ -9,7 +10,7 @@ export const DrawerCartItem = ({ item, handleRemoveItem, handleUpdateQuantity }:
       }}
     >
       <div>
-        {item.name} - ${item.price}
+        {item.name} - {formatCurrency(item.price)}
       </div>
       <div>Quantidade: {item.quantity}</div>
       <button onClick={() => handleRemoveItem(item.id, item.name)}>Remover</button>

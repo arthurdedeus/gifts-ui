@@ -1,12 +1,21 @@
-import React from 'react';
+import styled from 'styled-components';
 
 import { Cart } from '../components/Cart';
+import { CheckoutForm } from '../components/CheckoutForm';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { useCart } from '../contexts/CartContext';
+import { formatCurrency } from '../utils';
+
+const CartReviewContainer = styled.div`
+  overflow-y: auto;
+  flex: 1;
+  width: 100%;
+`;
 
 export const Checkout: React.FC = () => {
   const { totalPrice } = useCart();
+
   return (
     <div
       style={{
@@ -29,18 +38,14 @@ export const Checkout: React.FC = () => {
       >
         <h2>Checkout</h2>
       </div>
-      <div
-        style={{
-          overflowY: 'auto',
-          flex: 1,
-          width: '100%',
-        }}
-      >
+      <CartReviewContainer>
         <Cart isCheckout={true} />
-      </div>
-      <Footer style={{ marginBottom: '60px', width: '100%' }}>
-        <p>Total: ${totalPrice.toFixed(2)}</p>
-        <button> Ir para pagamento </button>
+      </CartReviewContainer>
+      <Footer style={{ marginBottom: '80px', width: '100%', height: '40%' }}>
+        <div>
+          <h3>Total: {formatCurrency(totalPrice)}</h3>
+        </div>
+        <CheckoutForm />
       </Footer>
     </div>
   );

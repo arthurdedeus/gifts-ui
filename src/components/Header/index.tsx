@@ -10,7 +10,7 @@ type HeaderProps = {
   isDrawerOpen?: boolean;
 };
 
-export const Header = ({ isCheckout = true, handleCartIconClick, isDrawerOpen }: HeaderProps) => {
+export const Header = ({ isCheckout = false, handleCartIconClick, isDrawerOpen }: HeaderProps) => {
   const navigate = useNavigate();
 
   const handletTitleClick = () => {
@@ -35,7 +35,7 @@ export const Header = ({ isCheckout = true, handleCartIconClick, isDrawerOpen }:
       <h1 style={{ margin: 0, cursor: 'pointer' }} onClick={handletTitleClick}>
         My Shop
       </h1>
-      {isCheckout && <CartIcon onClick={handleCartIconClick} isDrawerOpen={isDrawerOpen} />}
+      {!isCheckout && <CartIcon onClick={handleCartIconClick} isDrawerOpen={isDrawerOpen} />}
     </header>
   );
 };
