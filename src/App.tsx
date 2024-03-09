@@ -1,9 +1,12 @@
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 import './App.css';
 import { CartProvider } from './contexts/CartContext';
 import { Router } from './pages/Router';
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
@@ -16,9 +19,11 @@ function App() {
           closeButton={false}
           closeOnClick
         />
-        <div className="App">
-          <Router />
-        </div>
+        <QueryClientProvider client={queryClient}>
+          <div className="App">
+            <Router />
+          </div>
+        </QueryClientProvider>
       </CartProvider>
     </BrowserRouter>
   );

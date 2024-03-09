@@ -1,8 +1,8 @@
-import React from 'react';
+import { useQuery } from 'react-query';
 
 import styled from 'styled-components';
 
-import { Product } from '../types';
+import { getGifts } from '../api/gifts';
 import { ProductItem } from './ProductItem';
 
 const StyledGridContainer = styled.div`
@@ -19,108 +19,12 @@ const StyledGridContainer = styled.div`
 
 interface GridContainerProps {}
 
-const initialProducts = [
-  {
-    id: 1,
-    name: 'Filhote de Capivara para o Noivo',
-    description: 'Uma Capi.',
-    price: 15.99,
-    imageUrl: '/images/capy.jpeg',
-  },
-  {
-    id: 2,
-    name: 'Custom Wedding Mug',
-    description: 'A beautiful mug customized for your special day.',
-    price: 0.01,
-    imageUrl: '/images/capy.jpeg',
-  },
-  {
-    id: 3,
-    name: 'Custom Wedding Mug',
-    description: 'A beautiful mug customized for your special day.',
-    price: 15.99,
-    imageUrl: '/images/capy.jpeg',
-  },
-  {
-    id: 4,
-    name: 'Custom Wedding Mug',
-    description: 'A beautiful mug customized for your special day.',
-    price: 15.99,
-    imageUrl: '/images/capy.jpeg',
-  },
-  {
-    id: 5,
-    name: 'Custom Wedding Mug',
-    description: 'A beautiful mug customized for your special day.',
-    price: 15.99,
-    imageUrl: '/images/capy.jpeg',
-  },
-  {
-    id: 6,
-    name: 'Custom Wedding Mug',
-    description: 'A beautiful mug customized for your special day.',
-    price: 15.99,
-    imageUrl: '/images/capy.jpeg',
-  },
-  {
-    id: 7,
-    name: 'Custom Wedding Mug',
-    description: 'A beautiful mug customized for your special day.',
-    price: 15.99,
-    imageUrl: '/images/capy.jpeg',
-  },
-  {
-    id: 8,
-    name: 'Custom Wedding Mug',
-    description: 'A beautiful mug customized for your special day.',
-    price: 15.99,
-    imageUrl: '/images/capy.jpeg',
-  },
-  {
-    id: 9,
-    name: 'Custom Wedding Mug',
-    description: 'A beautiful mug customized for your special day.',
-    price: 15.99,
-    imageUrl: '/images/capy.jpeg',
-  },
-  {
-    id: 10,
-    name: 'Custom Wedding Mug',
-    description: 'A beautiful mug customized for your special day.',
-    price: 15.99,
-    imageUrl: '/images/capy.jpeg',
-  },
-  {
-    id: 11,
-    name: 'Custom Wedding Mug',
-    description: 'A beautiful mug customized for your special day.',
-    price: 15.99,
-    imageUrl: '/images/capy.jpeg',
-  },
-  {
-    id: 12,
-    name: 'Custom Wedding Mug',
-    description: 'A beautiful mug customized for your special day.',
-    price: 15.99,
-    imageUrl: '/images/capy.jpeg',
-  },
-  {
-    id: 13,
-    name: 'Custom Wedding Mug',
-    description: 'A beautiful mug customized for your special day.',
-    price: 15.99,
-    imageUrl: '/images/capy.jpeg',
-  },
-];
-
 export const GridContainer: React.FC<GridContainerProps> = () => {
-  const [products, setProducts] = React.useState<Product[]>(initialProducts);
+  const { data } = useQuery('gifts', getGifts);
 
   return (
     <StyledGridContainer>
-      {products.map(product => (
-        <ProductItem key={product.id} product={product} />
-      ))}
+      {data?.results.map(gift => <ProductItem key={gift.id} product={gift} />)}
     </StyledGridContainer>
   );
 };
