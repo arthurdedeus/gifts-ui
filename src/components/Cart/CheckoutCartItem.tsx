@@ -60,7 +60,7 @@ export const CheckoutCartItem = ({
 }: CartItemProps) => {
   return (
     <ItemContainer key={item.id}>
-      <Image src={item.imageUrl} alt={item.name} />
+      <Image src={item.image} alt={item.name} />
       <ProductContainer>
         <ProductName>{item.name}</ProductName>
         <ProductDescription>{item.description}</ProductDescription>

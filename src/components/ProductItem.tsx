@@ -37,7 +37,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
 
   return (
     <Item>
-      <img src={product.imageUrl} alt={product.name} style={{ maxWidth: '100%' }} />
+      <img src={product.image} alt={product.name} style={{ maxWidth: '100%' }} />
       <h2>{product.name}</h2>
       <p>{product.description}</p>
       <p>{formatCurrency(product.price)}</p>
