@@ -1,10 +1,15 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { useQueryClient } from 'react-query';
 
 import styled from 'styled-components';
 
+import { useCreateCheckoutMutation, useCreateUserMutation } from '../api/hooks/useCreateCheckout';
+import { useCart } from '../contexts/CartContext';
+
 interface FormState {
   email: string;
-  name: string;
+  first_name: string;
+  last_name: string;
   message: string;
 }
 
@@ -23,11 +28,16 @@ const InputGroup = styled.div`
 `;
 
 export const CheckoutForm = () => {
+  const createCheckout = useCreateCheckoutMutation();
+  const createUser = useCreateUserMutation();
+  const queryClient = useQueryClient();
   const [formState, setFormState] = useState<FormState>({
     email: '',
-    name: '',
+    first_name: '',
+    last_name: '',
     message: '',
   });
+  const { state } = useCart();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -37,11 +47,31 @@ export const CheckoutForm = () => {
     }));
   };
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    console.log('Form Submitted', formState);
-    // TODO: Handle submit
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+    const userData = {
+      email: formState.email,
+      first_name: formState.first_name,
+      last_name: formState.last_name,
+    };
+    createUser.mutate({ userData });
   };
+
+  useEffect(() => {
+    const token = createUser?.data?.auth_token;
+    if (!token) {
+      return;
+    }
+    const checkoutData = {
+      message: formState.message,
+      items: state.items.map(item => ({
+        gift_id: item.id,
+        quantity: item.quantity,
+      })),
+    };
+    createCheckout.mutate({ data: checkoutData, token: token });
+    createUser.reset();
+  }, [createUser?.data?.auth_token]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <form
@@ -59,8 +89,21 @@ export const CheckoutForm = () => {
           <label>Nome</label>
           <input
             type="text"
-            name="name"
-            value={formState.name}
+            name="first_name"
+            required={true}
+            value={formState.first_name}
+            onChange={handleChange}
+            style={{
+              width: '150px',
+            }}
+          />
+        </InputContainer>
+        <InputContainer>
+          <label>Sobrenome</label>
+          <input
+            type="text"
+            name="last_name"
+            value={formState.last_name}
             onChange={handleChange}
             style={{
               width: '150px',
@@ -69,7 +112,13 @@ export const CheckoutForm = () => {
         </InputContainer>
         <InputContainer>
           <label>Email</label>
-          <input type="email" name="email" value={formState.email} onChange={handleChange} />
+          <input
+            type="email"
+            required={true}
+            name="email"
+            value={formState.email}
+            onChange={handleChange}
+          />
         </InputContainer>
       </InputGroup>
       <InputGroup style={{ flexDirection: 'column' }}>
@@ -77,6 +126,7 @@ export const CheckoutForm = () => {
           <label>Mensagem</label>
           <textarea
             name="message"
+            required={true}
             value={formState.message}
             onChange={handleChange}
             style={{
