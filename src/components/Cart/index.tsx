@@ -41,16 +41,18 @@ export const Cart = ({ isCheckout = false }: CartProps) => {
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       {state.items.length === 0 && <p>Your cart is empty</p>}
-      <CartItemsList isCheckout={isCheckout}>
-        {state.items.map(item => (
-          <ItemComponent
-            key={item.id}
-            item={item}
-            handleRemoveItem={handleRemoveItem}
-            handleUpdateQuantity={handleUpdateQuantity}
-          />
-        ))}
-      </CartItemsList>
+      {state.items.length >= 1 && (
+        <CartItemsList isCheckout={isCheckout}>
+          {state.items.map(item => (
+            <ItemComponent
+              key={item.id}
+              item={item}
+              handleRemoveItem={handleRemoveItem}
+              handleUpdateQuantity={handleUpdateQuantity}
+            />
+          ))}
+        </CartItemsList>
+      )}
     </div>
   );
 };
