@@ -12,6 +12,7 @@ export type CheckoutProps = {
 
 type CheckoutResponse = {
   qr_code: string;
+  br_code: string;
 };
 
 export type CreateUserProps = {
