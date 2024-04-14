@@ -43,6 +43,7 @@ export const CartIcon = ({ onClick, isDrawerOpen }: CartIconProps) => {
             alignItems: 'center',
             justifyContent: 'center',
             fontSize: '12px',
+            fontWeight: '400',
           }}
         >
           {itemCount}

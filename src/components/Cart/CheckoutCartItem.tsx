@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { CartItemProps } from '../../types';
 import { formatCurrency } from '../../utils';
 import { Icon } from '../Icon';
+import { Image } from '../Image';
 
 const ItemContainer = styled.li`
   margin-bottom: 15px;
@@ -11,14 +12,8 @@ const ItemContainer = styled.li`
   width: 100%;
 `;
 
-const Image = styled.img`
-  width: 125px;
-  height: 125px;
-  margin-right: 15px;
-  border-radius: 10px;
-`;
-
 const ProductContainer = styled.div`
+  margin-left: 15px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -60,7 +55,7 @@ export const CheckoutCartItem = ({
 }: CartItemProps) => {
   return (
     <ItemContainer key={item.id}>
-      <Image src={item.image} alt={item.name} />
+      <Image src={item.image} alt={item.name} size="sm" />
       <ProductContainer>
         <ProductName>{item.name}</ProductName>
         <ProductDescription>{item.description}</ProductDescription>

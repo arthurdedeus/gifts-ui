@@ -23,7 +23,7 @@ export const Header = ({ isCheckout = false, handleCartIconClick, isDrawerOpen }
       style={{
         width: '100%',
         padding: '10px 20px',
-        backgroundColor: '#333',
+        backgroundColor: '#c4c4c4',
         color: '#fff',
         display: 'flex',
         justifyContent: 'space-between',
@@ -33,7 +33,7 @@ export const Header = ({ isCheckout = false, handleCartIconClick, isDrawerOpen }
       }}
     >
       <h1 style={{ margin: 0, cursor: 'pointer' }} onClick={handletTitleClick}>
-        My Shop
+        Presentes Carla e Arthur
       </h1>
       {!isCheckout && <CartIcon onClick={handleCartIconClick} isDrawerOpen={isDrawerOpen} />}
     </header>

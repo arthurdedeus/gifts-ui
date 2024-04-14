@@ -8,6 +8,7 @@ import { useCart } from '../contexts/CartContext';
 import { ActionType } from '../enums';
 import { Product } from '../types';
 import { formatCurrency } from '../utils';
+import { Image } from './Image';
 
 interface ProductItemProps {
   product: Product;
@@ -15,9 +16,11 @@ interface ProductItemProps {
 
 const Item = styled.div`
   border: 1px solid #eee;
+  border-radius: 10px;
   padding: 10px;
   margin: 10px;
   text-align: center;
+  background-color: #f5f5f5;
 
   @media (max-width: 768px) {
     margin: 2px;
@@ -37,7 +40,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
 
   return (
     <Item>
-      <img src={product.image} alt={product.name} style={{ maxWidth: '100%' }} />
+      <Image src={product.image} alt={product.name} size="md" />
       <h2>{product.name}</h2>
       <p>{product.description}</p>
       <p>{formatCurrency(product.price)}</p>
