@@ -28,6 +28,26 @@ const InputGroup = styled.div`
   align-items: center;
 `;
 
+const Input = styled.input`
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+`;
+
+const TextInput = styled.textarea`
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  resize: vertical;
+  width: 319px;
+  height: 100px;
+
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+`;
+
 export const CheckoutForm = () => {
   const createCheckout = useCreateCheckoutMutation();
   const createUser = useCreateUserMutation();
@@ -109,7 +129,7 @@ export const CheckoutForm = () => {
         <InputGroup style={{ flexDirection: 'row' }}>
           <InputContainer>
             <label>Nome</label>
-            <input
+            <Input
               type="text"
               name="first_name"
               required={true}
@@ -122,7 +142,7 @@ export const CheckoutForm = () => {
           </InputContainer>
           <InputContainer>
             <label>Sobrenome</label>
-            <input
+            <Input
               type="text"
               name="last_name"
               value={formState.last_name}
@@ -134,7 +154,7 @@ export const CheckoutForm = () => {
           </InputContainer>
           <InputContainer>
             <label>Email</label>
-            <input
+            <Input
               type="email"
               required={true}
               name="email"
@@ -146,16 +166,11 @@ export const CheckoutForm = () => {
         <InputGroup style={{ flexDirection: 'column' }}>
           <InputContainer>
             <label>Mensagem</label>
-            <textarea
+            <TextInput
               name="message"
               required={true}
               value={formState.message}
               onChange={handleChange}
-              style={{
-                resize: 'vertical',
-                width: '319px',
-                height: '100px',
-              }}
             />
           </InputContainer>
           <Button type="submit" text="Gerar QR Code" />
