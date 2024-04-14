@@ -20,14 +20,18 @@ const StyledGridContainer = styled.div`
   }
 `;
 
-interface GridContainerProps {}
+type GridContainerProps = {
+  setIsDrawerOpen: (isOpen: boolean) => void;
+};
 
-export const GridContainer: React.FC<GridContainerProps> = () => {
+export const GridContainer: React.FC<GridContainerProps> = ({ setIsDrawerOpen }) => {
   const { data } = useQuery('gifts', getGifts);
 
   return (
     <StyledGridContainer>
-      {data?.results.map(gift => <ProductItem key={gift.id} product={gift} />)}
+      {data?.results.map(gift => (
+        <ProductItem key={gift.id} product={gift} setIsDrawerOpen={setIsDrawerOpen} />
+      ))}
     </StyledGridContainer>
   );
 };

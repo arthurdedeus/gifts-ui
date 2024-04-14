@@ -28,7 +28,7 @@ export const Home = () => {
     <>
       <Header handleCartIconClick={toggleDrawer} isDrawerOpen={isDrawerOpen} />
       <CartDrawer isOpen={isDrawerOpen} />
-      <GridContainer />
+      <GridContainer setIsDrawerOpen={setIsDrawerOpen} />
     </>
   );
 };

@@ -25,7 +25,7 @@ const ProductContainer = styled.div`
 const ProductName = styled.span`
   font-size: 16px;
   margin: 0;
-  font-weight: 600;
+  font-weight: 400;
   text-align: left;
 `;
 
@@ -34,13 +34,13 @@ const ProductDescription = styled.span`
   margin: 0;
   padding: 0;
   justify-content: flex-start;
-  font-weight: 400;
+  font-weight: 300;
   text-align: left;
 `;
 
 const Price = styled.span`
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 300;
 `;
 
 const QuantityContainer = styled.div`

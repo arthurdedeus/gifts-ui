@@ -11,9 +11,10 @@ import { formatCurrency } from '../utils';
 import { Button } from './Button';
 import { Image } from './Image';
 
-interface ProductItemProps {
+type ProductItemProps = {
   product: Product;
-}
+  setIsDrawerOpen: (isOpen: true) => void;
+};
 
 const Item = styled.div`
   border: 1px solid #eee;
@@ -32,22 +33,22 @@ const Item = styled.div`
   }
 `;
 
-export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
+export const ProductItem: React.FC<ProductItemProps> = ({ product, setIsDrawerOpen }) => {
   const { dispatch } = useCart();
 
   const handleAddToCart = () => {
     toast.success(`${product.name} adicionado ao carrinho!`);
+    setIsDrawerOpen(true);
     dispatch({ type: ActionType.ADD_ITEM, payload: { ...product, quantity: 1 } });
   };
 
   return (
     <Item>
       <Image src={product.image} alt={product.name} size="md" />
-      <h2>{product.name}</h2>
+      <h2 style={{ fontWeight: 300 }}>{product.name}</h2>
       <p>{product.description}</p>
       <p>{formatCurrency(product.price)}</p>
       <Button text="Adicionar ao carrinho" onClick={handleAddToCart} />
-      {/* <button onClick={handleAddToCart}>Add to Cart</button> */}
     </Item>
   );
 };
