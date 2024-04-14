@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import { CartItemProps } from '../../types';
 import { formatCurrency } from '../../utils';
+import { Button } from '../Button';
 import { Icon } from '../Icon';
 import { Image } from '../Image';
 
@@ -61,22 +62,20 @@ export const CheckoutCartItem = ({
         <ProductDescription>{item.description}</ProductDescription>
         <Price>{formatCurrency(item.price * item.quantity)}</Price>
         <QuantityContainer>
-          <button
+          <Button
             onClick={() => handleUpdateQuantity(item.id, item.quantity - 1, item.name)}
-            style={{ marginRight: '5px' }}
-          >
-            -
-          </button>
+            style={{ marginRight: '5px', width: '30px' }}
+            text=" - "
+          />
           <span>{item.quantity}</span>
-          <button
+          <Button
             onClick={() => handleUpdateQuantity(item.id, item.quantity + 1, item.name)}
-            style={{ marginLeft: '5px' }}
-          >
-            +
-          </button>
+            style={{ marginLeft: '5px', width: '30px' }}
+            text="+"
+          />
           <Icon
             name="delete"
-            style={{ fontSize: '24px', cursor: 'pointer', marginLeft: '15px' }}
+            style={{ fontSize: '24px', cursor: 'pointer', marginLeft: '15px', color: 'gray' }}
             onClick={() => handleRemoveItem(item.id, item.name)}
           />
         </QuantityContainer>

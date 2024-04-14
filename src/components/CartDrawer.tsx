@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { AppRoutes } from '../enums';
 import { formatCurrency } from '../utils';
+import { Button } from './Button';
 import { Cart } from './Cart';
 import { Footer } from './Footer';
 
@@ -58,7 +59,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen }) => {
           borderBottom: '1px solid #ccc',
         }}
       >
-        <h2>Your Cart</h2>
+        <h2>Seu Carrinho</h2>
       </div>
       <div
         style={{
@@ -70,7 +71,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen }) => {
       </div>
       <Footer>
         <p>Total: {formatCurrency(totalPrice)}</p>
-        <button onClick={handleProceedToCheckout}>Proceed to Checkout</button>
+        <Button onClick={handleProceedToCheckout} text="Ir para Checkout" />
       </Footer>
     </div>
   );

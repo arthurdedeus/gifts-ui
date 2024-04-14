@@ -10,6 +10,9 @@ const StyledGridContainer = styled.div`
   grid-gap: 20px;
   padding: 20px;
 
+  height: 100vh;
+  background-color: #f5f5f5;
+
   grid-template-columns: repeat(3, 1fr);
 
   @media (max-width: 768px) {

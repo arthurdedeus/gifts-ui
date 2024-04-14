@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { useCreateCheckoutMutation, useCreateUserMutation } from '../api/hooks/useCreateCheckout';
 import { useCart } from '../contexts/CartContext';
+import { Button } from './Button';
 import { QRCodeModal } from './QRCodeModal';
 
 interface FormState {
@@ -157,7 +158,7 @@ export const CheckoutForm = () => {
               }}
             />
           </InputContainer>
-          <button type="submit">Gerar QR Code</button>
+          <Button type="submit" text="Gerar QR Code" />
         </InputGroup>
       </form>
       {isQRCodeModalOpen && (
