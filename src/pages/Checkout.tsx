@@ -11,42 +11,43 @@ const CartReviewContainer = styled.div`
   overflow-y: auto;
   flex: 1;
   width: 100%;
+  margin-top: 5px;
+`;
+
+const CheckoutContainer = styled.div`
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Checkout: React.FC = () => {
   const { totalPrice } = useCart();
 
   return (
-    <div
-      style={{
-        position: 'fixed',
-        height: '100%',
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        boxSizing: 'border-box',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <Header isCheckout={false} />
-      <div
-        style={{
-          borderBottom: '1px solid #ccc',
-          width: '100%',
-        }}
-      >
-        <h2>Checkout</h2>
-      </div>
+    <CheckoutContainer>
+      <Header isCheckout />
       <CartReviewContainer>
         <Cart isCheckout={true} />
       </CartReviewContainer>
-      <Footer style={{ marginBottom: '80px', width: '100%', height: '40%' }}>
+      <Footer
+        style={{
+          marginBottom: '80px',
+          width: '100%',
+          height: '40%',
+          padding: '5px',
+          overflowY: 'auto',
+        }}
+      >
         <div>
-          <h3>Total: {formatCurrency(totalPrice)}</h3>
+          <h3 style={{ margin: '10px' }}>Total: {formatCurrency(totalPrice)}</h3>
         </div>
         <CheckoutForm />
       </Footer>
-    </div>
+    </CheckoutContainer>
   );
 };

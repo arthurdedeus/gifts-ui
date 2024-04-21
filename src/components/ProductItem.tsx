@@ -17,6 +17,11 @@ type ProductItemProps = {
 };
 
 const Item = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
   border: 1px solid #eee;
   border-radius: 10px;
   padding: 10px;
@@ -44,11 +49,13 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product, setIsDrawerOp
 
   return (
     <Item>
-      <Image src={product.image} alt={product.name} size="md" />
-      <h2 style={{ fontWeight: 300 }}>{product.name}</h2>
-      <p>{product.description}</p>
-      <p>{formatCurrency(product.price)}</p>
-      <Button text="Adicionar ao carrinho" onClick={handleAddToCart} />
+      <Image src={product.image} alt={product.name} size="sm" />
+      <h2 style={{ fontWeight: 300, marginBottom: 0 }}>{product.name}</h2>
+      <p style={{ marginTop: '5px' }}>{product.description}</p>
+      <div>
+        <p style={{ marginBottom: '5px' }}>{formatCurrency(product.price)}</p>
+        <Button text="Adicionar ao carrinho" onClick={handleAddToCart} />
+      </div>
     </Item>
   );
 };

@@ -18,7 +18,7 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   text-align: left;
-  margin: 10px;
+  margin: 5px 10px;
 `;
 
 const InputGroup = styled.div`
@@ -34,15 +34,16 @@ const Input = styled.input`
   padding: 5px;
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
+  width: 143px;
 `;
 
 const TextInput = styled.textarea`
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 5px;
-  resize: vertical;
+  resize: none;
   width: 319px;
-  height: 100px;
+  overflow: hidden;
 
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
@@ -62,6 +63,11 @@ export const CheckoutForm = () => {
   };
   const [formState, setFormState] = useState<FormState>(formInitialValues);
   const { state } = useCart();
+
+  const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    e.target.style.height = 'inherit'; // Reset height to ensure shrinking on delete
+    e.target.style.height = `${e.target.scrollHeight}px`; // Expand to fit content
+  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -119,14 +125,14 @@ export const CheckoutForm = () => {
       <form
         onSubmit={handleSubmit}
         style={{
-          padding: 10,
+          padding: '0px 10px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           flexDirection: 'column',
         }}
       >
-        <InputGroup style={{ flexDirection: 'row' }}>
+        <InputGroup>
           <InputContainer>
             <label>Nome</label>
             <Input
@@ -135,9 +141,6 @@ export const CheckoutForm = () => {
               required={true}
               value={formState.first_name}
               onChange={handleChange}
-              style={{
-                width: '150px',
-              }}
             />
           </InputContainer>
           <InputContainer>
@@ -147,22 +150,22 @@ export const CheckoutForm = () => {
               name="last_name"
               value={formState.last_name}
               onChange={handleChange}
-              style={{
-                width: '150px',
-              }}
-            />
-          </InputContainer>
-          <InputContainer>
-            <label>Email</label>
-            <Input
-              type="email"
-              required={true}
-              name="email"
-              value={formState.email}
-              onChange={handleChange}
             />
           </InputContainer>
         </InputGroup>
+        <InputContainer>
+          <label>Email</label>
+          <Input
+            type="email"
+            required={true}
+            name="email"
+            value={formState.email}
+            onChange={handleChange}
+            style={{
+              width: 319,
+            }}
+          />
+        </InputContainer>
         <InputGroup style={{ flexDirection: 'column' }}>
           <InputContainer>
             <label>Mensagem</label>
@@ -171,9 +174,10 @@ export const CheckoutForm = () => {
               required={true}
               value={formState.message}
               onChange={handleChange}
+              onInput={handleInput}
             />
           </InputContainer>
-          <Button type="submit" text="Gerar QR Code" />
+          <Button style={{ marginTop: '5px' }} type="submit" text="Gerar QR Code" />
         </InputGroup>
       </form>
       {isQRCodeModalOpen && (
