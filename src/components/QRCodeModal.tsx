@@ -1,7 +1,18 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+import { Button } from './Button';
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 
 const ModalBackdrop = styled.div`
   position: fixed;
@@ -10,6 +21,7 @@ const ModalBackdrop = styled.div`
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  animation: ${fadeIn} 0.5s ease-out forwards;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,7 +30,7 @@ const ModalBackdrop = styled.div`
 const ModalContent = styled.div`
   background-color: white;
   padding: 20px;
-  border-radius: 4px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   max-width: 200px;
@@ -41,10 +53,8 @@ export const QRCodeModal: React.FC<QRCodeModalProps> = ({ qrCodeUrl, brCode, onC
       <ModalContent onClick={e => e.stopPropagation()}>
         <img src={qrCodeUrl} alt="QR Code" style={{ paddingBottom: '10px' }} />
         <p>Escaneie o QR Code pelo aplicativo do seu banco para pagar</p>
-        <button onClick={handleCopyLink} style={{ marginBottom: '5px' }}>
-          Copiar link
-        </button>
-        <button onClick={onClose}>Fechar</button>
+        <Button onClick={handleCopyLink} style={{ marginBottom: '5px' }} text="Copiar link" />
+        <Button onClick={onClose} text="Fechar" />
       </ModalContent>
     </ModalBackdrop>
   );

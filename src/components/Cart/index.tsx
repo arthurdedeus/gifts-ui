@@ -23,16 +23,16 @@ export const Cart = ({ isCheckout = false }: CartProps) => {
 
   const handleRemoveItem = (id: number, name: string) => {
     dispatch({ type: ActionType.REMOVE_ITEM, payload: { id } });
-    toast.success(`${name} removed from cart!`);
+    toast.success(`${name} foi removido do carrinho!`);
   };
 
   const handleUpdateQuantity = (id: number, quantity: number, name: string) => {
     if (quantity < 1) {
       dispatch({ type: ActionType.REMOVE_ITEM, payload: { id } });
-      toast.success(`${name} removed from cart!`);
+      toast.success(`${name} foi removido do carrinho!`);
     } else {
       dispatch({ type: ActionType.UPDATE_QUANTITY, payload: { id, quantity } });
-      toast.success(`${name} updated!`);
+      toast.success(`${name} atualizado!`);
     }
   };
 
@@ -40,7 +40,7 @@ export const Cart = ({ isCheckout = false }: CartProps) => {
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
-      {state.items.length === 0 && <p>Your cart is empty</p>}
+      {state.items.length === 0 && <p>Seu carrinho está vazio :(</p>}
       {state.items.length >= 1 && (
         <CartItemsList isCheckout={isCheckout}>
           {state.items.map(item => (

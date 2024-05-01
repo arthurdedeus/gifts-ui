@@ -10,6 +10,10 @@ const StyledGridContainer = styled.div`
   grid-gap: 20px;
   padding: 20px;
 
+  height: 100%;
+  width: 100%;
+  background-color: #f5f5f5;
+
   grid-template-columns: repeat(3, 1fr);
 
   @media (max-width: 768px) {
@@ -17,14 +21,18 @@ const StyledGridContainer = styled.div`
   }
 `;
 
-interface GridContainerProps {}
+type GridContainerProps = {
+  setIsDrawerOpen: (isOpen: boolean) => void;
+};
 
-export const GridContainer: React.FC<GridContainerProps> = () => {
+export const GridContainer: React.FC<GridContainerProps> = ({ setIsDrawerOpen }) => {
   const { data } = useQuery('gifts', getGifts);
 
   return (
     <StyledGridContainer>
-      {data?.results.map(gift => <ProductItem key={gift.id} product={gift} />)}
+      {data?.results.map(gift => (
+        <ProductItem key={gift.id} product={gift} setIsDrawerOpen={setIsDrawerOpen} />
+      ))}
     </StyledGridContainer>
   );
 };
