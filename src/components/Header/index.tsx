@@ -21,7 +21,7 @@ const StyledHeader = styled.header<StyledHeaderProps>`
   height: 60px;
 
   @media (max-width: 768px) {
-    justify-content: ${({ isCheckout }) => (isCheckout ? 'center' : 'space-between')};
+    justify-content: ${({ isCheckout }) => (isCheckout ? 'flex-start' : 'space-between')};
   }
 `;
 
