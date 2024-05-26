@@ -39,23 +39,8 @@ export const Header = ({ isCheckout = false, handleCartIconClick, isDrawerOpen }
   };
 
   return (
-    <StyledHeader
-      className="header"
-      isCheckout={isCheckout}
-      // style={{
-      //   width: '100%',
-      //   padding: '10px 10px',
-      //   backgroundColor: '#c4c4c4',
-      //   color: '#fff',
-      //   display: 'flex',
-      //   justifyContent: justifyContent,
-      //   alignItems: 'center',
-      //   boxSizing: 'border-box',
-      //   height: '60px',
-
-      // }}
-    >
-      <h1 style={{ margin: 0, cursor: 'pointer' }} onClick={handletTitleClick}>
+    <StyledHeader className="header" isCheckout={isCheckout}>
+      <h1 style={{ margin: 0, cursor: 'pointer', fontSize: '1.8rem' }} onClick={handletTitleClick}>
         Presentes Carla e Arthur
       </h1>
       {!isCheckout && <CartIcon onClick={handleCartIconClick} isDrawerOpen={isDrawerOpen} />}
