@@ -5,7 +5,8 @@ import styled from 'styled-components';
 const BaseButton = styled.button<ButtonHTMLAttributes<HTMLButtonElement>>`
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: ${({ color }) => color || '#fff'};
+  background-color: #fff;
+  color: #000;
   padding: 5px 10px;
   font-size: 0.9rem;
   font-weight: 300;
@@ -21,7 +22,6 @@ const BaseButton = styled.button<ButtonHTMLAttributes<HTMLButtonElement>>`
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   text: string;
-  color?: string;
 };
 
 export const Button = ({ text, ...props }: ButtonProps) => {
