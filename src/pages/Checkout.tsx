@@ -12,6 +12,8 @@ const CartReviewContainer = styled.div`
   flex: 1;
   width: 100%;
   margin-top: 5px;
+
+  background-color: #ffffff;
 `;
 
 const CheckoutContainer = styled.div`

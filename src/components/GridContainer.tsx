@@ -11,13 +11,11 @@ const StyledGridContainer = styled.div`
   padding: 20px;
 
   height: 100%;
-  width: 100%;
-  background-color: #f5f5f5;
 
   grid-template-columns: repeat(3, 1fr);
 
   @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
 `;
 
