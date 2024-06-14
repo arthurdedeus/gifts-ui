@@ -5,17 +5,14 @@ import { Icon } from './Icon';
 
 type CartIconProps = {
   onClick?: () => void;
-  isDrawerOpen?: boolean;
 };
 
-export const CartIcon = ({ onClick, isDrawerOpen }: CartIconProps) => {
+export const CartIcon = ({ onClick }: CartIconProps) => {
   const { state } = useCart();
   const itemCount = state.items.reduce((total, item) => total + item.quantity, 0);
 
   const handleClick = (event: React.MouseEvent) => {
-    console.log({ isDrawerOpen });
     event.stopPropagation();
-    if (isDrawerOpen) return;
     if (onClick) {
       onClick();
     }
