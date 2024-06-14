@@ -2,6 +2,8 @@ import { ButtonHTMLAttributes } from 'react';
 
 import styled from 'styled-components';
 
+import { lightPink, pink } from '../colors';
+
 const BaseButton = styled.button<ButtonHTMLAttributes<HTMLButtonElement>>`
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -16,7 +18,7 @@ const BaseButton = styled.button<ButtonHTMLAttributes<HTMLButtonElement>>`
 
   &:hover {
     cursor: pointer;
-    background-color: #e6e6e6;
+    background-color: ${lightPink};
   }
 `;
 

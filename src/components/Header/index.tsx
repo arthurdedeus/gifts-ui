@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import styled from 'styled-components';
 
+import { pink } from '../../colors';
 import { AppRoutes } from '../../enums';
 import { CartIcon } from '../CartIcon';
 import './Header.css';
@@ -12,7 +13,7 @@ type StyledHeaderProps = {
 const StyledHeader = styled.header<StyledHeaderProps>`
   width: 100%;
   padding: 10px 10px;
-  background-color: #c4c4c4;
+  background-color: ${pink};
   color: #fff;
   display: flex;
   justify-content: space-between;
