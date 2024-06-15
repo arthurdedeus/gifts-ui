@@ -1,2 +1,2 @@
 export const pink = '#dea4b6';
-export const lightPink = '#f7dce5';
+export const lightPink = '#e6c1cd';

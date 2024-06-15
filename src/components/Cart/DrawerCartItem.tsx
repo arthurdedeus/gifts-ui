@@ -13,11 +13,11 @@ export const DrawerCartItem = ({ item, handleRemoveItem, handleUpdateQuantity }:
       <div>
         {item.name} - {formatCurrency(item.price)}
       </div>
-      <div>Quantidade: {item.quantity}</div>
+      <div style={{ marginBottom: '5px' }}>Quantidade: {item.quantity}</div>
       <Button onClick={() => handleRemoveItem(item.id, item.name)} text="Remover" />
       <Button
         onClick={() => handleUpdateQuantity(item.id, item.quantity - 1, item.name)}
-        style={{ width: '30px' }}
+        style={{ width: '30px', margin: '0 2px 0 10px' }}
         text="-"
       />
       <Button
