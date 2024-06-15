@@ -5,10 +5,10 @@ import styled from 'styled-components';
 import { lightPink, pink } from '../colors';
 
 const BaseButton = styled.button<ButtonHTMLAttributes<HTMLButtonElement>>`
-  border: 1px solid #ccc;
+  border: 0;
   border-radius: 5px;
-  background-color: #fff;
-  color: #000;
+  background-color: ${pink};
+  color: #fff;
   padding: 5px 10px;
   font-size: 0.9rem;
   font-weight: 300;
